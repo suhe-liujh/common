@@ -56,12 +56,13 @@ target_include_directories(
 		$<INSTALL_INTERFACE:include>
 )
 
-# Disabled: PCH causes hardcoded absolute paths in exported config
-# target_precompile_headers(
-# 	${PROJECT_NAME}
-# 	PUBLIC
-# 		common/IPrefix.h
-# )
+# Use PCH with relative path that works after installation
+target_precompile_headers(
+	${PROJECT_NAME}
+	PUBLIC
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/common/IPrefix.h>
+		$<INSTALL_INTERFACE:include/common/IPrefix.h>
+)
 
 # ---- Create an installable target ----
 
