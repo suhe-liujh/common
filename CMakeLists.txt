@@ -56,10 +56,10 @@ target_include_directories(
 		$<INSTALL_INTERFACE:include>
 )
 
-# Use PCH only for building common itself, don't export
+# Export PCH for external use, path will be fixed by vcpkg portfile
 target_precompile_headers(
 	${PROJECT_NAME}
-	PRIVATE
+	PUBLIC
 		${CMAKE_CURRENT_SOURCE_DIR}/common/IPrefix.h
 )
 
