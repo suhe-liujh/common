@@ -56,12 +56,11 @@ target_include_directories(
 		$<INSTALL_INTERFACE:include>
 )
 
-# Use PCH with relative path that works after installation
+# Use PCH only for building common itself, don't export
 target_precompile_headers(
 	${PROJECT_NAME}
-	PUBLIC
-		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/common/IPrefix.h>
-		$<INSTALL_INTERFACE:include/common/IPrefix.h>
+	PRIVATE
+		${CMAKE_CURRENT_SOURCE_DIR}/common/IPrefix.h
 )
 
 # ---- Create an installable target ----
